@@ -100,11 +100,23 @@
 		<!--<version>2.5</version>-->
 		<!--</dependency>-->
 
+		<!--redis-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+
 		<!--dubbo-->
 		<dependency>
 			<groupId>io.dubbo.springboot</groupId>
 			<artifactId>spring-boot-starter-dubbo</artifactId>
 			<version>1.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>2.9.0</version>
 		</dependency>
 
 	</dependencies>

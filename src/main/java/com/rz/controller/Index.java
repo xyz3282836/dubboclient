@@ -2,6 +2,7 @@ package com.rz.controller;
 
 import com.rz.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -34,6 +35,27 @@ public class Index {
     public String findOneCity(Model model) {
         model.addAttribute("citylist", cityService.findAllCity());
         return "index/citylist";
+    }
+
+
+    @Autowired
+    private StringRedisTemplate redisTemplate;
+
+    @GetMapping(value = "/redis/set/{val}")
+    public String testRedis(Model model,@PathVariable("val") String val) {
+        if(val.equals("")){
+            val = "default value";
+        }
+        redisTemplate.opsForValue().set("redisval",val);
+        model.addAttribute("val",val);
+        return "index/redis/set";
+    }
+
+    @GetMapping(value = "/redis/get")
+    public String getRedisVal(Model model){
+        String val = redisTemplate.opsForValue().get("redisval");
+        model.addAttribute("val",val);
+        return "index/redis/get";
     }
 
 }
