@@ -22,7 +22,7 @@ public class Index {
     @RequestMapping("/index")
     public String index(ModelMap map){
         map.addAttribute("host","www");
-        return "index/index";
+        return "index/test";
     }
 
     @GetMapping(value = "/city/{id}")
