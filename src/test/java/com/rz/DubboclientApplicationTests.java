@@ -11,6 +11,7 @@ public class DubboclientApplicationTests {
 
 	@Test
 	public void contextLoads() {
+
 	}
 
 }
