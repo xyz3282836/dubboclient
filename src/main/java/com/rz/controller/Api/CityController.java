@@ -2,10 +2,14 @@ package com.rz.controller.Api;
 
 import com.rz.dubbo.CityDubboConsumerService;
 import com.rz.entity.City;
+import com.rz.enums.CityErrorInfoEnum;
+import com.rz.result.GlobalErrorInfoException;
+import com.rz.result.ResultBody;
 import com.rz.service.CityService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,8 +38,11 @@ public class CityController {
     }
 
     @GetMapping(value = "/api/city/{id}")
-    public City findOneCity(@PathVariable("id") Long id) {
-        return cityService.findCityById(id);
+    public ResultBody findOneCity(@PathVariable("id") Long id) throws GlobalErrorInfoException{
+        if (id == 0) {
+            throw new GlobalErrorInfoException(CityErrorInfoEnum.PARAMS_NO_COMPLETE);
+        }
+        return new ResultBody(cityService.findCityById(id));
     }
 
     @GetMapping(value = "/api/citys")
