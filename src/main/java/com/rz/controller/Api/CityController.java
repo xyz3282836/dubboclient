@@ -61,23 +61,26 @@ public class CityController {
     }
 
     @GetMapping(value = "/api/citys")
-    public List<City> findAllCity() throws GlobalErrorInfoException {
-        return cityService.findAllCity();
+    public ResultBody findAllCity() throws GlobalErrorInfoException {
+        return new ResultBody(cityService.findAllCity());
     }
 
     @PostMapping(value = "/api/city")
-    public void createCity(@RequestBody City city) throws GlobalErrorInfoException {
+    public ResultBody createCity(@RequestBody City city) throws GlobalErrorInfoException {
         cityService.saveCity(city);
+        return new ResultBody(GlobalErrorInfoEnum.SUCCESS);
     }
 
     @PutMapping(value = "/api/city")
-    public void modifyCity(@RequestBody City city) throws GlobalErrorInfoException {
+    public ResultBody modifyCity(@RequestBody City city) throws GlobalErrorInfoException {
         cityService.updateCity(city);
+        return new ResultBody(GlobalErrorInfoEnum.SUCCESS);
     }
 
     @DeleteMapping(value = "/api/city/{id}")
-    public void modifyCity(@PathVariable("id") Long id) throws GlobalErrorInfoException {
+    public ResultBody modifyCity(@PathVariable("id") Long id) throws GlobalErrorInfoException {
         cityService.deleteCity(id);
+        return new ResultBody(GlobalErrorInfoEnum.SUCCESS);
     }
 
 }
