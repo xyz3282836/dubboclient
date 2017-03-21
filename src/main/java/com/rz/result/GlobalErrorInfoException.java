@@ -14,7 +14,4 @@ public class GlobalErrorInfoException extends Exception {
         return errorInfo;
     }
 
-    public void setErrorInfo(ErrorInfoInterface errorInfo) {
-        this.errorInfo = errorInfo;
-    }
 }

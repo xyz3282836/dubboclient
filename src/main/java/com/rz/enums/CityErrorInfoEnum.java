@@ -6,8 +6,7 @@ import com.rz.result.ErrorInfoInterface;
  * Created by ruizhouliu on 2017/3/20.
  */
 public enum CityErrorInfoEnum implements ErrorInfoInterface {
-    PARAMS_NO_COMPLETE("000001","params no complete"),
-    CITY_EXIT("000002","city exit");
+    CITY_NO_EXIT("5002","city not exit");
 
     CityErrorInfoEnum(String code, String message) {
         this.code = code;
@@ -20,11 +19,11 @@ public enum CityErrorInfoEnum implements ErrorInfoInterface {
 
     @Override
     public String getCode() {
-        return null;
+        return this.code;
     }
 
     @Override
     public String getMessage() {
-        return null;
+        return this.message;
     }
 }

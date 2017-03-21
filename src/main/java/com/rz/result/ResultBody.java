@@ -1,5 +1,7 @@
 package com.rz.result;
 
+import com.rz.enums.GlobalErrorInfoEnum;
+
 /**
  * Created by ruizhouliu on 2017/3/20.
  */
@@ -12,7 +14,7 @@ public class ResultBody {
     private Object result;
 
     /**
-     *
+     *  异常输出
      * @param errorInfo
      */
     public ResultBody(ErrorInfoInterface errorInfo) {
@@ -20,6 +22,10 @@ public class ResultBody {
         this.message = errorInfo.getMessage();
     }
 
+    /**
+     * 正常输出
+     * @param result
+     */
     public ResultBody(Object result) {
         this.code = GlobalErrorInfoEnum.SUCCESS.getCode();
         this.message = GlobalErrorInfoEnum.SUCCESS.getMessage();
