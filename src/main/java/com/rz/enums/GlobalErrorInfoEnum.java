@@ -7,7 +7,7 @@ import com.rz.result.ErrorInfoInterface;
  */
 public enum GlobalErrorInfoEnum implements ErrorInfoInterface {
     SUCCESS("1","success"),
-    PARAMS_ERROR("-3","params no complete"),
+    PARAMS_ERROR("-3","params error"),
     PARAMS_NO_COMPLETE("-2","params no complete"),
     NOT_FOUND("-1","service not found");
 
