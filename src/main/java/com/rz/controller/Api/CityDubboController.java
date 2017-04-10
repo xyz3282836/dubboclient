@@ -1,29 +1,26 @@
 package com.rz.controller.Api;
 
 import com.rz.dubbo.CityDubboConsumerService;
-import com.rz.dubbo.CityDubboService;
 import com.rz.entity.City;
 import com.rz.enums.CityErrorInfoEnum;
 import com.rz.enums.GlobalErrorInfoEnum;
 import com.rz.result.GlobalErrorInfoException;
 import com.rz.result.ResultBody;
-import com.rz.service.CityService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 /**
  * Created by ruizhouliu on 2017/2/13.
  */
 @RestController
-public class CityController {
+@RequestMapping("/dubbo")
+public class CityDubboController {
 
     @Autowired
-    private CityService cityService;
+    private CityDubboConsumerService cityDubboConsumerService;
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -36,7 +33,7 @@ public class CityController {
         if(StringUtils.isEmpty(cityName)){
             throw new GlobalErrorInfoException(GlobalErrorInfoEnum.PARAMS_NO_COMPLETE);
         }
-        City city = cityService.findCityByName(cityName);
+        City city = cityDubboConsumerService.get().findCityByName(cityName);
         if(city == null){
             throw new GlobalErrorInfoException(CityErrorInfoEnum.CITY_NO_EXIT);
         }
@@ -51,7 +48,7 @@ public class CityController {
         if (id <= 0) {
             throw new GlobalErrorInfoException(GlobalErrorInfoEnum.PARAMS_ERROR);
         }
-        City city = cityService.findCityById(id);
+        City city = cityDubboConsumerService.get().findCityById(id);
         if(city == null){
             throw new GlobalErrorInfoException(CityErrorInfoEnum.CITY_NO_EXIT);
         }
@@ -60,24 +57,24 @@ public class CityController {
 
     @GetMapping(value = "/api/citys")
     public ResultBody findAllCity() throws GlobalErrorInfoException {
-        return new ResultBody(cityService.findAllCity());
+        return new ResultBody(cityDubboConsumerService.get().findAllCity());
     }
 
     @PostMapping(value = "/api/city")
     public ResultBody createCity(@RequestBody City city) throws GlobalErrorInfoException {
-        cityService.saveCity(city);
+        cityDubboConsumerService.get().saveCity(city);
         return new ResultBody(GlobalErrorInfoEnum.SUCCESS);
     }
 
     @PutMapping(value = "/api/city")
     public ResultBody modifyCity(@RequestBody City city) throws GlobalErrorInfoException {
-        cityService.updateCity(city);
+        cityDubboConsumerService.get().updateCity(city);
         return new ResultBody(GlobalErrorInfoEnum.SUCCESS);
     }
 
     @DeleteMapping(value = "/api/city/{id}")
     public ResultBody modifyCity(@PathVariable("id") Long id) throws GlobalErrorInfoException {
-        cityService.deleteCity(id);
+        cityDubboConsumerService.get().deleteCity(id);
         return new ResultBody(GlobalErrorInfoEnum.SUCCESS);
     }
 
