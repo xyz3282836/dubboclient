@@ -38,11 +38,11 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!--web模块-->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
+		<!--web模块 freemark不需要-->
+		<!--<dependency>-->
+			<!--<groupId>org.springframework.boot</groupId>-->
+			<!--<artifactId>spring-boot-starter-web</artifactId>-->
+		<!--</dependency>-->
 
 		<!--thymeleaf-->
 		<!--<dependency>-->
