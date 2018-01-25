@@ -15,7 +15,6 @@ public class GlobalErrorInfoHandler {
     public ResultBody errorHandlerOverJson(HttpServletRequest request,
                                            GlobalErrorInfoException exception) {
         ErrorInfoInterface errorInfo = exception.getErrorInfo();
-        ResultBody result = new ResultBody(errorInfo);
-        return result;
+        return new ResultBody(errorInfo);
     }
 }
